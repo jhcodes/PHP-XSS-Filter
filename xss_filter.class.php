@@ -67,12 +67,21 @@ class xss_filter {
 	* @access public
 	* @param string $input
 	* @return string
+	* Add null blank space.
 	*/
 	public function filter_it($input){
 		$this->input = html_entity_decode($input, ENT_NOQUOTES, 'UTF-8');
 		$this->normal_replace();
 		$this->do_grep();
-		return $this->input;
+		$blank = $this->input;
+		if (empty($blank)) 
+		{
+			return null;
+		}
+		else
+		{
+            return $this->input;
+		}
 	}
 
 	/**
